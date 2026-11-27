@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detectry | Scam Lens</title>
+
+    <title>Detectra Scanner | URL Security</title>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -15,45 +16,81 @@
     <nav class="navbar">
         <div class="logo">
             <span class="logo-icon">◈</span>
-            DETECTRY
+            DETECTRA
+            <span class="logo-label">SCANNER</span>
         </div>
-        <div class="nav-tag">SCAM LENS</div>
+
+        <div class="nav-right">
+            <span class="nav-status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </span>
+        </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <main class="container">
 
+        <!-- HERO -->
         <section class="hero">
-            <div class="shield">🛡️</div>
 
-            <p class="eyebrow">YOUR DIGITAL SAFETY PARTNER</p>
+            <div class="hero-badge">
+                <span>✦</span> SMART URL THREAT DETECTION
+            </div>
 
-            <h1>Don't Trust the Link.<br>
-                <span>Verify It First.</span>
+            <div class="shield">
+                🛡️
+            </div>
+
+            <h1>
+                Browse Smart.<br>
+                <span>Stay Protected.</span>
             </h1>
 
             <p class="hero-description">
-                Detect suspicious URLs, uncover hidden threats
-                and protect yourself from online scams.
+                Suspicious link? Don't risk it.
+                Scan any URL and uncover potential security
+                threats before you click.
             </p>
+
+            <div class="hero-features">
+                <span>⚡ Instant Analysis</span>
+                <span>◈ Smart Detection</span>
+                <span>🔒 Privacy Focused</span>
+            </div>
+
         </section>
+
 
         <!-- SCANNER -->
         <section class="scanner-card">
 
             <div class="scanner-heading">
-                <div>
-                    <h2>Scam Lens Scanner</h2>
-                    <p>Enter a URL to analyze its security risks.</p>
+
+                <div class="scanner-title">
+                    <div class="scanner-icon">⌕</div>
+
+                    <div>
+                        <h2>URL Security Scanner</h2>
+                        <p>Analyze a link for suspicious patterns.</p>
+                    </div>
                 </div>
-                <span class="live-status">● READY</span>
+
+                <span class="live-status">
+                    <span class="status-dot"></span>
+                    READY
+                </span>
+
             </div>
+
 
             <form id="scanForm">
 
-                <label for="urlInput">WEBSITE URL</label>
+                <label for="urlInput">
+                    ENTER WEBSITE URL
+                </label>
 
                 <div class="input-wrapper">
+
                     <span class="input-icon">🔗</span>
 
                     <input
@@ -63,46 +100,61 @@
                         autocomplete="url"
                         spellcheck="false"
                     >
+
                 </div>
 
                 <p id="errorMessage" class="error-message"></p>
 
                 <button type="submit" id="scanButton">
-                    <span>⌕</span> Scan Website
+                    <span>⌕</span>
+                    Analyze Website
+                    <span class="button-arrow">→</span>
                 </button>
 
             </form>
 
             <div class="scanner-footer">
                 <span>✓ No account required</span>
-                <span>✓ Instant analysis</span>
-                <span>✓ Privacy focused</span>
+                <span>✓ Quick scan</span>
+                <span>✓ No data stored on server</span>
             </div>
 
         </section>
+
 
         <!-- RESULTS -->
         <section id="result" class="result-section hidden">
 
             <div class="result-header">
+
                 <div>
-                    <p class="eyebrow">SCAN COMPLETE</p>
-                    <h2>Security Analysis</h2>
+                    <p class="eyebrow">ANALYSIS COMPLETED</p>
+                    <h2>Security Report</h2>
                 </div>
-                <span class="result-badge">SCAN RESULT</span>
+
+                <span class="result-badge">
+                    ◈ SCAN RESULT
+                </span>
+
             </div>
+
 
             <div class="result-grid">
 
-                <!-- SCORE -->
+                <!-- RISK SCORE -->
                 <div class="score-card">
-                    <p class="small-heading">SCAM RISK SCORE</p>
+
+                    <p class="small-heading">
+                        SCAM RISK SCORE
+                    </p>
 
                     <div class="score-circle" id="scoreCircle">
-                        <div>
+
+                        <div class="score-inner">
                             <span id="score">0</span>
                             <small>/100</small>
                         </div>
+
                     </div>
 
                     <h3 id="risk">Low Risk</h3>
@@ -110,16 +162,22 @@
                     <p id="riskDescription">
                         No obvious suspicious patterns detected.
                     </p>
+
                 </div>
 
-                <!-- DETAILS -->
+
+                <!-- THREAT ANALYSIS -->
                 <div class="details-card">
 
-                    <h3>Threat Analysis</h3>
+                    <h3>
+                        <span class="details-icon">⌘</span>
+                        Threat Analysis
+                    </h3>
 
                     <p id="scannedURL" class="scanned-url"></p>
 
                     <div class="progress-container">
+
                         <div class="progress-info">
                             <span>Risk level</span>
                             <span id="scoreText">0%</span>
@@ -128,6 +186,7 @@
                         <div class="progress-track">
                             <div id="progressBar"></div>
                         </div>
+
                     </div>
 
                     <div class="threat-summary">
@@ -141,47 +200,79 @@
 
             </div>
 
+
             <!-- RECOMMENDATION -->
             <div class="recommendation" id="recommendation">
+
                 <span id="recommendationIcon">🛡️</span>
+
                 <div>
-                    <h3 id="recommendationTitle">Security Recommendation</h3>
+                    <h3 id="recommendationTitle">
+                        Security Recommendation
+                    </h3>
+
                     <p id="recommendationText"></p>
                 </div>
+
             </div>
 
             <p class="disclaimer">
-                This result is based on URL pattern analysis.
-                It does not guarantee that a website is safe or malicious.
+                Detectra analyzes URL patterns and potential risks.
+                This analysis does not guarantee that a website
+                is completely safe or malicious.
             </p>
 
         </section>
 
-        <!-- HISTORY -->
+
+        <!-- SCAN HISTORY -->
         <section class="history-section">
+
             <div class="history-heading">
+
                 <div>
-                    <h2>Recent Scans</h2>
-                    <p>Your latest URL analysis results.</p>
+                    <h2>Scan History</h2>
+                    <p>Review your recently analyzed websites.</p>
                 </div>
 
-                <button id="clearHistory" class="clear-button" type="button">
+                <button
+                    id="clearHistory"
+                    class="clear-button"
+                    type="button"
+                >
                     Clear History
                 </button>
+
             </div>
 
             <div id="historyList" class="history-list">
-                <p class="empty-history">No scans performed yet.</p>
+
+                <p class="empty-history">
+                    ◈ Your scan history will appear here.
+                </p>
+
             </div>
+
         </section>
 
     </main>
 
+
     <!-- FOOTER -->
     <footer>
-        <div class="logo">◈ DETECTRY</div>
-        <p>Think Before You Click. Stay Safe Online.</p>
-        <small>Hackathon Project | Scam Lens</small>
+
+        <div class="footer-logo">
+            ◈ DETECTRA SCANNER
+        </div>
+
+        <p>
+            Think Before You Click. Stay Safe Online.
+        </p>
+
+        <small>
+            Hackathon Project · URL Threat Analysis
+        </small>
+
     </footer>
 
 </body>
