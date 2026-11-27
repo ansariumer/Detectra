@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #040914;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% -15%, rgba(0, 118, 255, 0.17), transparent 55%),
+    linear-gradient(135deg, #050a16, #071225 50%, #060b19);
+  color: #edf7ff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.028) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 95%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 95%);
+}
+
+button,
+input {
+  font-family: 'Inter', sans-serif;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(0, 229, 255, 0.3);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050b18;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#00cfe8, #625cff);
+  border-radius: 10px;
+}

@@ -1,0 +1,237 @@
+
+
+<div class="app-container" (mousemove)="onMouseMove($event)">
+
+  <div
+    class="mouse-glow"
+    [style.left.px]="mouseX"
+    [style.top.px]="mouseY">
+  </div>
+
+<div class="mouse-glow"
+     [style.left.px]="mouseX"
+     [style.top.px]="mouseY">
+</div>
+
+<div class="app-container" (mousemove)="onMouseMove($event)">
+
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">D</div>
+      <span>DETECTRY<span class="logo-dot">.</span></span>
+    </div>
+
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      SYSTEM ONLINE
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <div class="eyebrow">
+        <span class="pulse-dot"></span>
+        ADVANCED URL THREAT ANALYSIS
+      </div>
+
+      <h1>
+        DETECT THREATS.<br>
+        <span>STAY PROTECTED.</span>
+      </h1>
+
+      <p class="hero-description">
+        Analyze suspicious links, identify potential threats
+        and protect your digital identity with Detectry.
+      </p>
+    </section>
+
+    <section class="scanner-card">
+      <div class="section-heading">
+        <div>
+          <span class="small-label">THREAT DETECTION ENGINE</span>
+          <h2>Scan a website</h2>
+        </div>
+        <div class="shield-icon">⌑</div>
+      </div>
+
+      <div class="input-area">
+        <span class="input-icon">⌕</span>
+
+        <input
+          type="text"
+          [(ngModel)]="url"
+          (keyup.enter)="scanUrl()"
+          placeholder="Enter URL (example.com)"
+          [disabled]="loading"
+        >
+
+        <button class="scan-button"
+                (click)="scanUrl()"
+                [disabled]="loading">
+          <span *ngIf="!loading">ANALYZE ↗</span>
+          <span *ngIf="loading" class="loading-text">SCANNING...</span>
+        </button>
+      </div>
+
+      <p class="error-message" *ngIf="error">
+        ⚠ {{ error }}
+      </p>
+
+      <div class="scanner-footer">
+        <span>🔒 Your URL is analyzed using local security checks</span>
+        <span>ENGINE v1.0</span>
+      </div>
+    </section>
+
+    <section class="loading-section" *ngIf="loading">
+      <div class="loader"></div>
+      <h3>ANALYZING URL</h3>
+      <p>Checking suspicious patterns and domain indicators...</p>
+    </section>
+
+    <section class="results-section" *ngIf="scanned">
+
+      <div class="results-heading">
+        <div>
+          <span class="small-label">SCAN COMPLETE</span>
+          <h2>Security Report</h2>
+        </div>
+        <span class="result-tag">ANALYSIS READY</span>
+      </div>
+
+      <div class="results-grid">
+
+        <div class="score-card">
+          <span class="small-label">THREAT SCORE</span>
+
+          <div class="score-circle"
+               [style.--score-color]="scoreColor"
+               [style.--score-progress]="score * 3.6 + 'deg'">
+
+            <div class="score-inner">
+              <strong>{{ score }}</strong>
+              <span>/100</span>
+            </div>
+          </div>
+
+          <div class="risk-level"
+               [style.color]="scoreColor">
+            {{ riskLevel }} RISK
+          </div>
+
+          <p>{{ riskMessage }}</p>
+        </div>
+
+        <div class="threat-card">
+          <span class="small-label">DETECTED INDICATORS</span>
+          <h3>Threat Analysis</h3>
+
+          <div class="no-threats" *ngIf="threats.length === 0">
+            <span class="success-icon">✓</span>
+            <h3>No suspicious patterns found</h3>
+            <p>This URL passed the available heuristic checks.</p>
+          </div>
+
+          <div class="threat-list" *ngIf="threats.length > 0">
+            <div class="threat-item" *ngFor="let threat of threats">
+              <div class="threat-symbol">!</div>
+              <div class="threat-info">
+                <strong>{{ threat.title }}</strong>
+                <p>{{ threat.description }}</p>
+              </div>
+              <span class="threat-points">+{{ threat.points }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="recommendation-card">
+        <div class="recommendation-icon">⚡</div>
+        <div>
+          <span class="small-label">SECURITY RECOMMENDATION</span>
+          <p>{{ recommendation }}</p>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        This score is based on URL pattern analysis, not a live malware
+        or phishing database. A low score does not guarantee safety.
+      </div>
+
+    </section>
+
+    <section class="history-section">
+      <div class="history-heading">
+        <div>
+          <span class="small-label">YOUR ACTIVITY</span>
+          <h2>Recent Scans</h2>
+        </div>
+
+        <button class="clear-button"
+                *ngIf="history.length > 0"
+                (click)="clearHistory()">
+          CLEAR HISTORY
+        </button>
+      </div>
+
+      <div class="empty-history" *ngIf="history.length === 0">
+        <span>◷</span>
+        <p>No scans yet. Your scan history will appear here.</p>
+      </div>
+
+      <div class="history-list" *ngIf="history.length > 0">
+        <div class="history-item" *ngFor="let item of history">
+          <div class="history-url">
+            <span class="history-icon">↗</span>
+            <div>
+              <strong>{{ item.url }}</strong>
+              <small>{{ item.date }}</small>
+            </div>
+          </div>
+
+          <div class="history-right">
+            <span class="history-risk" [class]="item.level.toLowerCase()">
+              {{ item.level }}
+            </span>
+            <strong>{{ item.score }}/100</strong>
+            <button (click)="scanAgain(item)" title="Scan again">↻</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <span>◈</span>
+        <strong>URL ANALYSIS</strong>
+        <p>Suspicious pattern detection</p>
+      </div>
+
+      <div class="feature">
+        <span>⌁</span>
+        <strong>RISK SCORING</strong>
+        <p>Instant threat assessment</p>
+      </div>
+
+      <div class="feature">
+        <span>⬡</span>
+        <strong>USER SECURITY</strong>
+        <p>Safer browsing awareness</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="logo footer-logo">
+      <div class="logo-icon">D</div>
+      <span>DETECTRY<span class="logo-dot">.</span></span>
+    </div>
+
+    <p>BUILT FOR A SAFER DIGITAL WORLD.</p>
+    <span>© 2026 DETECTRY</span>
+  </footer>
+
+</div>
